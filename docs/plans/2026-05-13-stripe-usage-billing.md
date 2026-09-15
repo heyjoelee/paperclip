@@ -234,7 +234,7 @@ CREATE TABLE billing_stripe_usage_records (
   stripe_usage_record_id   TEXT,
   stripe_idempotency_key   TEXT NOT NULL,
   reported_at              TIMESTAMPTZ NOT NULL DEFAULT now(),
-  status                   TEXT NOT NULL,            -- 'sent', 'failed', 'replayed'
+  status                   TEXT NOT NULL,            -- 'sent', 'failed', 'replayed', 'dead'
   error_message            TEXT,
 
   UNIQUE (company_id, meter_key, hour_bucket)
@@ -426,7 +426,7 @@ No data migrations required; new tables start empty.
 
 This RFC is **merged** when:
 
-- This document is committed to the Paperclip repo at `docs/rfcs/stripe-usage-billing.md`.
+- This document is committed to the Paperclip repo at `docs/plans/2026-05-13-stripe-usage-billing.md`.
 - Reviewers sign off: at least one Paperclip platform maintainer + one downstream-consumer representative (initially Company OS / Joe).
 - The three implementation PRs (§7.1) have child tickets opened in the Paperclip tracker, blocked on this merge.
 
